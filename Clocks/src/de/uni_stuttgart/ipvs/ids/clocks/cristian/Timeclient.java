@@ -42,10 +42,11 @@ public class Timeclient implements Runnable {
 							recvBuff.length);
 	
 					long t0 = clock.getTime();
-					System.out.println(clock.getTime() + " puto");
+					System.out.println(t0 + " t0");
 					clientSocket.receive(receivePacket);
 					long cm = new Long((new String(receivePacket.getData()).trim()));
 					long t1 = clock.getTime();
+					System.out.println(t1 + " t1");
 					long delay = (t1 - t0) / 2;
 					long currenttime = cm + delay;
 	

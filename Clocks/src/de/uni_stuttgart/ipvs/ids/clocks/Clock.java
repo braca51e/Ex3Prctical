@@ -28,22 +28,19 @@ public class Clock extends Thread {
 
 	public synchronized void setTime(long time) {
 		// TODO: Implement me!
-		
-		System.out.println("clock "+ this.name + " " + counter);
+		System.out.println("clock "+ name + " " + counter);
 		counter = time; 
 	}
 
 	public void run() {
 		// TODO: Implement me!
 		while(true){
-			//Time elapsed in one tick is equal to incrementTime/2 plus drift
-			//counter += (long)((incrementTime/2) + (long)drift); 	
+			//Time elapsed in one tick is equal to incrementTime/2 plus drift 	
 			counter+=(long)(drift*incrementTime)+(long)incrementTime; 
-			System.out.println("Current time Clock " + name + " Time:" + counter + " " + drift);
-		
+			System.out.println("Current time Clock " + name + " Time:" + counter);
 			try {
 				//Sleep for one tick
-				Thread.sleep(incrementTime/2);
+				Thread.sleep(incrementTime);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
