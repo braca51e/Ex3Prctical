@@ -36,7 +36,7 @@ public class Clock extends Thread {
 		// TODO: Implement me!
 		while(true){
 			//Time elapsed in one tick is equal to incrementTime/2 plus drift 	
-			counter+=(long)(drift*incrementTime)+(long)incrementTime; 
+			counter += (long)(drift*incrementTime)+(long)incrementTime; 
 			System.out.println("Current time Clock " + name + " Time:" + counter);
 			try {
 				//Sleep for one tick

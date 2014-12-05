@@ -40,26 +40,29 @@ public class Timeclient implements Runnable {
 					
 					DatagramPacket receivePacket = new DatagramPacket(recvBuff,
 							recvBuff.length);
-	
+					//t0 to stimate P
 					long t0 = clock.getTime();
-					System.out.println(t0 + " t0");
+					//Send socket teh request
 					clientSocket.receive(receivePacket);
-					long cm = new Long((new String(receivePacket.getData()).trim()));
+					//Get current clock master clock
+					long Cm = new Long((new String(receivePacket.getData()).trim()));
+					//t1 to stimate P
 					long t1 = clock.getTime();
-					System.out.println(t1 + " t1");
-					long delay = (t1 - t0) / 2;
-					long currenttime = cm + delay;
+					//Compute P
+					long P = (t1 - t0) / 2;
+					//Stimate master's current time
+					long currentTime = Cm + P;
 	
-					// Check the velocity of the clock. If it is faster we set t0.
-	
-					if (clock.getTime() <= cm) {
-						clock.setTime(currenttime);
+					// Chech if slave's clock is faster 
+					if (clock.getTime() <= Cm) {
+						clock.setTime(currentTime);
 					} else {
+					//Let interrupt pass with out increment clock
 						clock.setTime(t0);
 					}
 	
-					System.out.println("clock " + name + " " + currenttime
-							+ " delay " + delay);
+					System.out.println("clock " + name + " " + currentTime
+							+ " delay " + P);
 	
 					Thread.sleep(tau);
 			} catch (Exception e) {
