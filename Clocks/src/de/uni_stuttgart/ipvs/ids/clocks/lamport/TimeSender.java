@@ -14,7 +14,7 @@ public class TimeSender implements Runnable {
 	private VSDatagramSocket senderSocket;
 	private Set<InetSocketAddress> neighbourSet;
 	private final static long delta = 1000;
-	private final static double maximal_drift_rate;
+	private final static double maximal_drift_rate = 0.15;
 
 	public TimeSender(Clock clock, VSDatagramSocket socket,
 			Set<InetSocketAddress> neighbourSet) {
